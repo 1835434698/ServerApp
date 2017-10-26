@@ -12,7 +12,8 @@ public class Constant {
     public static boolean isProduction = false;
 
     public static Context context;
-    public static final String url = "http://192.168.32.44:8080/MySpringWeb/mvc/";
+//    public static final String url = "http://192.168.32.44:8080/MySpringWeb/mvc/";
+    public static final String url = "http://47.94.22.205/koudaitu_test/test/";
     public static int widthScreen;
     public static int heightScreen;
 

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         final Map<String, String> httpParams =  new HashMap<>();
         httpParams.put("userName","1234567890");
         httpParams.put("userPassword","123456");//
-        OkHttpManager.asyncRequest("login", httpParams,listener,true);
+        OkHttpManager.asyncRequest("test0.php", httpParams,listener,true);
     }
 
 

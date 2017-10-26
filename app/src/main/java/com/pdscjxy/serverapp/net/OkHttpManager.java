@@ -48,11 +48,11 @@ public class OkHttpManager {
                     //创建一个RequestBody(参数1：数据类型 参数2传递的json串)
                     Request request = null;
                     if (isPost){
-
                         request = httpPost(httpParams, url);
                     }else {
-                        request = httpGet(request, url);
+                        request = httpGet(httpParams, url);
                     }
+                    Logger.d(TAG, "onReq = "+httpParams);
                     cookieJarImpl = new CookieJarImpl(cookieStore);
                     okHttpClient = okHttpClient.newBuilder().cookieJar(cookieJarImpl).build();
 
@@ -91,8 +91,9 @@ public class OkHttpManager {
                             }
                         });
                     }
+                    Logger.d(TAG, "onResp = "+strResult);
                 } catch (Exception e){
-                    Logger.i(TAG, "error = " + e);
+                    Logger.e(TAG, "error = " + e);
                     ((Activity)(Constant.context)).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -100,30 +101,6 @@ public class OkHttpManager {
                         }
                     });
                 }
-            }
-
-            private Request httpGet(Request request, String url) throws UnsupportedEncodingException {
-                StringBuilder sb = new StringBuilder();
-                if (httpParams != null && !httpParams.isEmpty()) {
-                    Set<String> strings = httpParams.keySet();
-                    for (String key : strings) {
-                        sb.append(key);
-                        if (httpParams.get(key) != null){
-                            sb.append("=");
-                            sb.append(URLEncoder.encode(httpParams.get(key), "UTF-8"));
-                        }
-                        sb.append("&");
-                    }
-                    if(url.indexOf("?") >= 0){
-                        if(sb.length() > 0){
-                            url = url + "&" + sb.substring(0, sb.length() - 1);
-                        }
-                    } else if(sb.length() > 0){
-                        url = url + "?" + sb.substring(0, sb.length() - 1);
-                    }
-                    request = new Request.Builder().url(url).build();
-                }
-                return request;
             }
         };
         thread.start();
@@ -143,6 +120,32 @@ public class OkHttpManager {
 //               RequestBody requestBody = builder.build();
 
         request =  new Request.Builder().url(url).post(builder.build()).build();
+        return request;
+    }
+
+
+    private static Request httpGet(Map<String, String> httpParams, String url) throws UnsupportedEncodingException {
+        Request request = null;
+        StringBuilder sb = new StringBuilder();
+        if (httpParams != null && !httpParams.isEmpty()) {
+            Set<String> strings = httpParams.keySet();
+            for (String key : strings) {
+                sb.append(key);
+                if (httpParams.get(key) != null){
+                    sb.append("=");
+                    sb.append(URLEncoder.encode(httpParams.get(key), "UTF-8"));
+                }
+                sb.append("&");
+            }
+            if(url.indexOf("?") >= 0){
+                if(sb.length() > 0){
+                    url = url + "&" + sb.substring(0, sb.length() - 1);
+                }
+            } else if(sb.length() > 0){
+                url = url + "?" + sb.substring(0, sb.length() - 1);
+            }
+            request = new Request.Builder().url(url).build();
+        }
         return request;
     }
 
