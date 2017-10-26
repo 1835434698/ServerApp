@@ -10,6 +10,6 @@ import android.content.Intent;
 public interface IActivity {
     public void setCustomedLayout(boolean customed);
     public Context getContext();
-    public void onActivityResult(int requestCode, int resultCode, Intent data);
+//    public void onActivityResult(int requestCode, int resultCode, Intent data);
     public void onActivityFirstLayout();
 }
