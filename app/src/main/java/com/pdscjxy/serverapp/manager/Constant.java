@@ -27,4 +27,17 @@ public class Constant {
 
     public static final String logPath = path + "/log/";
     public static final String logException = "logException.txt";
+
+
+    public static final String WEBVIEW_URL = "webView_url";
+
+    public static final String MOBILE = "mobile";
+
+    //进件图片上传
+    public static final int REQUEST_IMAGE = 1002;
+    public static final int MENU_CAMERA = 101;//相机
+    public static final int MENU_ALBUM = 102;//相册
+    public static final int MENU_CANCEL = 103;//取消
+
+
 }

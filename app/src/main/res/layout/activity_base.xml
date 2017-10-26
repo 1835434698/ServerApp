@@ -5,27 +5,40 @@
     android:background="#FFFFFF">
 
     <LinearLayout
-        android:id="@+id/included_sec_title"
-        android:clipToPadding="true"
-        android:fitsSystemWindows="true"
+        android:id="@+id/included_title"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:gravity="center"
         android:background="@android:color/holo_blue_bright"
-        android:layout_height="60dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="这是标题"/>
+            <ImageView
+                android:id="@+id/title_left_img"
+                android:layout_width="28.4dp"
+                android:layout_height="36dp"
+                android:padding="8dp"
+                android:layout_marginLeft="7dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back_translation"/>
+            <TextView
+                android:layout_centerInParent="true"
+                android:id="@+id/sec_title_tv"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="这是标题"/>
 
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/content_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/included_sec_title"
+        android:layout_below="@id/included_title"
         android:orientation="vertical" >
     </LinearLayout>
 

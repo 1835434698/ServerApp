@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import com.pdscjxy.serverapp.R;
 import com.pdscjxy.serverapp.activity.base.BaseActivity;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by Administrator on 2017/10/26.
  */
@@ -22,6 +24,7 @@ public class BaseFragment  extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         root = inflater.inflate(R.layout.fragment_base, null);
+        ButterKnife.bind(this,root);//绑定framgent
         return root;
     }
 
@@ -30,7 +33,13 @@ public class BaseFragment  extends Fragment {
         content_linear.addView(View.inflate(getActivity(), layoutResID, null), new LinearLayout.LayoutParams(-1, -1));
     }
 
-//    /** 清除contentView里面的加载进度 */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);//解绑
+    }
+
+    //    /** 清除contentView里面的加载进度 */
 //    public void removeProgress() {
 //        if (mLoadingView != null&&root!=null) {
 //            LinearLayout contentView = (LinearLayout) root.findViewById(R.id.fragment_content_view);

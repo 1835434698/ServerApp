@@ -13,11 +13,19 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.pdscjxy.serverapp.R;
 import com.pdscjxy.serverapp.permission.EasyPermissions;
 import com.pdscjxy.serverapp.util.Logger;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2017/10/26.
@@ -27,9 +35,22 @@ public class BaseActivity extends AppCompatActivity implements IActivity{
     private static final String TAG = "UIBaseActivity";
     public String BACK_BTN_TEXT = "backBtnText";
 
+    @Bind(R.id.sec_title_tv)
+    TextView mTitleView;
+    // 标题栏左侧，右侧图标
+    @Bind(R.id.title_left_img)
+    ImageView mLeftBtn;
+
+    @Bind(R.id.included_title)
+    LinearLayout titleLayout;
+
+    @Bind(R.id.content_view)
+    LinearLayout content_linear;
+
     public static final int REQUEST_CODE_CALLBACK = 0x1000;
     public static final String EXTRA_ACTIVITY_NAME = "_extra_activity_name";
     public static final String EXTRA_START_CALLBACK = "_extra_start_callback";
+
 
 
     protected boolean isFirstLayout = true;
@@ -39,6 +60,7 @@ public class BaseActivity extends AppCompatActivity implements IActivity{
     private static final int MSG_WHAT_HIDE_WAIT_DIALOG = 105;
     private String showMessage = "";
     private int dialogId = -1;
+
 
 //    public Handler fHandler = new Handler() {
 //        @Override
@@ -80,12 +102,14 @@ public class BaseActivity extends AppCompatActivity implements IActivity{
     protected void onDestroy() {
         // TODO Auto-generated method stub
         super.onDestroy();
+        ButterKnife.unbind(this);//解除绑定，官方文档只对fragment做了解绑
     }
 
     @Override
     public void setContentView(int layoutResID) {
         // TODO Auto-generated method stub
         super.setContentView(R.layout.activity_base);
+        ButterKnife.bind(this);
         if (layoutResID < 0) {
             return;
         }
@@ -104,18 +128,62 @@ public class BaseActivity extends AppCompatActivity implements IActivity{
         }
     }
 
+    public TextView getTitleView() {
+        return mTitleView;
+    }
+
+    public ImageView getLeftBtn() {
+        return mLeftBtn;
+    }
+
+    public LinearLayout getTitleLayout() {
+        return titleLayout;
+    }
 
     /**
      * 设置Activity的内容布局，取代setContentView（）方法
      */
     public void setView(int layoutResID) {
-        LinearLayout content_linear = (LinearLayout) this.findViewById(R.id.content_view);
+//        LinearLayout content_linear = (LinearLayout) this.findViewById(R.id.content_view);
         content_linear.addView(View.inflate(this, layoutResID, null), new LinearLayout.LayoutParams(-1, -1));
     }
 
+    @OnClick(R.id.title_left_img)
+    public void onBack(View view) {
+        finish();
+    }
+//
+//    public void initTitleBar() {
+////        mTitleView = (TextView) findViewById(R.id.sec_title_tv);
+////        mLeftBtn = (ImageView) findViewById(R.id.title_left_img);
+////        mRightBtn = (ImageButton) findViewById(R.id.title_right_img_2);
+////        mRightTitle = (TextView) findViewById(R.id.right_title);
+////        mRightSecondTitle = (TextView) findViewById(R.id.right_second_title);
+////        sec_title_layout = (RelativeLayout) findViewById(R.id.included_sec_title);
+////
+//        mLeftBtn.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                finish();
+//            }
+//        });
+//    }
 
+    public void hideTitle() {
+        titleLayout.setVisibility(View.GONE);
+    }
 
-
+    public void setLeftShow(boolean isShow) {
+//        if (mLeftBtn != null) {
+//            if (isShow){
+//                mLeftBtn.setVisibility(View.VISIBLE);
+//            }else {
+//                mLeftBtn.setVisibility(View.GONE);
+//            }
+//        }
+    }
     @Override
     public void setCustomedLayout(boolean customed) {
 
