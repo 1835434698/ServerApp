@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.pdscjxy.serverapp.activity.base.UIBaseActivity;
 import com.pdscjxy.serverapp.manager.Constant;
 import com.pdscjxy.serverapp.net.OkHttpManager;
 import com.pdscjxy.serverapp.util.Logger;
@@ -15,7 +16,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends UIBaseActivity {
 
     private static final String TAG = "MainActivity";
 
@@ -25,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Constant.context = this;
 
-        final Map<String, String> httpParams =  new HashMap<>();
-        httpParams.put("userName","1234567890");
-        httpParams.put("userPassword","123456");//
-        OkHttpManager.asyncRequest("test0.php", httpParams,listener,true);
+//        final Map<String, String> httpParams =  new HashMap<>();
+//        httpParams.put("userName","1234567890");
+//        httpParams.put("userPassword","123456");//
+//        OkHttpManager.asyncRequest("test0.php", httpParams,listener,true);
     }
 
 
