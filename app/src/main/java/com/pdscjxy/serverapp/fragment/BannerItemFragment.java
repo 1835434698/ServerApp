@@ -11,21 +11,19 @@ import com.pdscjxy.serverapp.R;
 import com.pdscjxy.serverapp.fragment.base.BaseFragment;
 import com.pdscjxy.serverapp.util.PrefUtils;
 
-import butterknife.Bind;
 
 /**
  * Created by Administrator on 2017/10/26.
  */
 
 public class BannerItemFragment extends BaseFragment{
-    @Bind(R.id.image)
-    ImageView image;
+    private ImageView image;
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
         setView(R.layout.fragment_baner);
-//        initView();
+        initView();
         initData();
     }
 
@@ -57,9 +55,9 @@ public class BannerItemFragment extends BaseFragment{
             }
         }
     }
-//
-//    private void initView() {
-//        // TODO Auto-generated method stub
-//        image = (ImageView) findViewById(R.id.image);
-//    }
+
+    private void initView() {
+        // TODO Auto-generated method stub
+        image = (ImageView) findViewById(R.id.image);
+    }
 }

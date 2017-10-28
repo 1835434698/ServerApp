@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.pdscjxy.serverapp"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -22,8 +22,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    // ButterKnife标注
     compile 'io.reactivex:rxandroid:1.1.0'
     // RxAndroid
     compile 'io.reactivex:rxjava:1.1.0'

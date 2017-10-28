@@ -15,7 +15,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
