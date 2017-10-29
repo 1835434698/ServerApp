@@ -11,6 +11,7 @@ import android.support.annotation.AnimRes;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -40,6 +41,11 @@ public class BaseActivity extends AppCompatActivity implements IActivity{
     public static final int REQUEST_CODE_CALLBACK = 0x1000;
     public static final String EXTRA_ACTIVITY_NAME = "_extra_activity_name";
     public static final String EXTRA_START_CALLBACK = "_extra_start_callback";
+
+    public static final String ONE_LAYOUT = "OneLayout";
+    public static final String TWO_LAYOUT = "TwoLayout";
+
+
 
 
 
@@ -117,9 +123,29 @@ public class BaseActivity extends AppCompatActivity implements IActivity{
         }
     }
 
+    /**
+     * 设置页面最外层布局 FitsSystemWindows 属性
+     * @param activity
+     * @param value
+     */
+    public static void setFitsSystemWindows(Activity activity, boolean value) {
+        ViewGroup contentFrameLayout = (ViewGroup) activity.findViewById(android.R.id.content);
+        View parentView = contentFrameLayout.getChildAt(0);
+        if (parentView != null && Build.VERSION.SDK_INT >= 14) {
+            parentView.setFitsSystemWindows(value);
+        }
+    }
+
     public TextView getTitleView() {
         return mTitleView;
     }
+
+    public void setTitleText(String title) {
+        if (mTitleView!=null)
+            mTitleView.setText(title);
+    }
+
+
 
     public ImageView getLeftBtn() {
         return mLeftBtn;
@@ -152,8 +178,35 @@ public class BaseActivity extends AppCompatActivity implements IActivity{
         });
     }
 
+    public void setTitleLayout(String layout) {
+        if (titleLayout.getVisibility() != View.VISIBLE){
+            titleLayout.setVisibility(View.VISIBLE);
+        }
+        if (ONE_LAYOUT.equals(layout)){
+            titleLayout.setBackgroundColor(getResources().getColor(R.color.color_EAEAEA));
+            setWindowStatusBarColor(this, R.color.color_EAEAEA);
+        }else if (TWO_LAYOUT.equals(layout)){
+
+        }
+    }
+
     public void hideTitle() {
         titleLayout.setVisibility(View.GONE);
+    }
+
+    public static void setWindowStatusBarColor(Activity activity, int colorResId) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = activity.getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(activity.getResources().getColor(colorResId));
+
+                //底部导航栏
+                //window.setNavigationBarColor(activity.getResources().getColor(colorResId));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setLeftShow(boolean isShow) {

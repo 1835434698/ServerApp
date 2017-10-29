@@ -116,6 +116,17 @@ public class ViewHolder {
         ((TextView) getView(viewId)).setText(text);
         return this;
     }
+    /**
+     * 为TextView设置字符串
+     *
+     * @param viewId
+     * @return
+     */
+    public ViewHolder setBackground(int viewId, Drawable drawable) {
+        ;
+        getView(viewId).setBackground(drawable);
+        return this;
+    }
 
     public ViewHolder setOnClick(int viewId, OnItemListener listener) {
         (getView(viewId)).setOnClickListener(listener);

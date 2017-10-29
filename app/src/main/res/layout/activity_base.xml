@@ -2,6 +2,7 @@
     android:id="@+id/base_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="#FFFFFF">
 
     <LinearLayout
@@ -11,9 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
-            android:layout_marginTop="24dp"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="@dimen/dp_40">
 
             <ImageView
                 android:id="@+id/title_left_img"
@@ -29,6 +29,8 @@
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_15"
                 android:text="这是标题"/>
 
         </RelativeLayout>

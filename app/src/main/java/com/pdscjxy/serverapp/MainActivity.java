@@ -1,9 +1,13 @@
 package com.pdscjxy.serverapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pdscjxy.serverapp.activity.OrderActivity;
 import com.pdscjxy.serverapp.activity.base.BaseActivity;
 import com.pdscjxy.serverapp.manager.Constant;
 import com.pdscjxy.serverapp.net.OkHttpManager;
@@ -20,23 +24,38 @@ public class MainActivity extends BaseActivity {
 
     private static final String TAG = "MainActivity";
 
+    private TextView tv_look;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         Constant.context = this;
+        setContentView(R.layout.activity_main);
+        hideTitle();
+        init();
 
-        checkPermission(new CheckPermListener() {
+//        checkPermission(new CheckPermListener() {
+//            @Override
+//            public void superPermission() {
+////                login();
+//            }
+//        }, R.string.ask_again, Manifest.permission.READ_PHONE_STATE,Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//
+//        final Map<String, String> httpParams =  new HashMap<>();
+//        httpParams.put("userName","1234567890");
+//        httpParams.put("userPassword","123456");//
+//        OkHttpManager.asyncRequest("test0.php", httpParams,listener,true);
+    }
+
+    private void init() {
+        tv_look = (TextView) findViewById(R.id.tv_look);
+        tv_look.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void superPermission() {
-//                login();
-            }
-        }, R.string.ask_again, Manifest.permission.READ_PHONE_STATE,Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            public void onClick(View view) {
+                startCallbackActivity(new Intent(MainActivity.this, OrderActivity.class));
 
-        final Map<String, String> httpParams =  new HashMap<>();
-        httpParams.put("userName","1234567890");
-        httpParams.put("userPassword","123456");//
-        OkHttpManager.asyncRequest("test0.php", httpParams,listener,true);
+            }
+        });
     }
 
 

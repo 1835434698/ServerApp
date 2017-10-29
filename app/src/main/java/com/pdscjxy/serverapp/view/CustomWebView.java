@@ -216,14 +216,14 @@ public class CustomWebView extends FrameLayout {
         if (TextUtils.isEmpty(url)) {
             return;
         }
-        CookieSyncManager.createInstance(Constant.context.getApplicationContext());
+        CookieSyncManager.createInstance(Constant.app);
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setCookie(url, cookie);
         CookieSyncManager.getInstance().sync();
     }
 
     public void removeCookie() {
-        CookieSyncManager.createInstance(Constant.context.getApplicationContext());
+        CookieSyncManager.createInstance(Constant.app);
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.removeAllCookie();
         CookieSyncManager.getInstance().sync();

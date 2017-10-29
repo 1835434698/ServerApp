@@ -43,6 +43,26 @@
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
         </activity>
         <activity
+            android:name=".activity.OrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+        </activity>
+        <activity
+            android:name=".activity.OrderTwoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+        </activity>
+        <activity
+            android:name=".activity.DetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+        </activity>
+        <activity
+            android:name=".activity.OrderSureActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+        </activity>
+        <activity
             android:name=".activity.WebActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
