@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.pdscjxy.serverapp.R;
 import com.pdscjxy.serverapp.permission.EasyPermissions;
 import com.pdscjxy.serverapp.util.Logger;
+import com.pdscjxy.serverapp.view.ProgressDialog;
 
 
 /**
@@ -267,6 +268,18 @@ public class BaseActivity extends AppCompatActivity implements IActivity{
         super.onPause();
         Logger.i(getClass().getSimpleName(), "onPause");
     }
+
+    protected void startProgressDialog(String text) {
+        ProgressDialog.getInstance().startProgressDialog(this, text);
+    }
+    protected void startProgressDialog() {
+        ProgressDialog.getInstance().startProgressDialog(this);
+    }
+
+    protected void stopProgressDialog() {
+        ProgressDialog.getInstance().stopProgressDialog();
+    }
+
 
 
     protected static final int RC_PERM = 123;

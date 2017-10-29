@@ -2,7 +2,7 @@
     android:id="@+id/base_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
     android:background="#FFFFFF">
 
     <LinearLayout
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
+            android:layout_marginTop="@dimen/dp_25"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40">
 

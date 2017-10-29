@@ -5,9 +5,8 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-
-import com.pdscjxy.serverapp.MainActivity;
 import com.pdscjxy.serverapp.R;
+import com.pdscjxy.serverapp.activity.LoginActivity;
 import com.pdscjxy.serverapp.fragment.base.BaseFragment;
 import com.pdscjxy.serverapp.util.PrefUtils;
 
@@ -45,7 +44,7 @@ public class BannerItemFragment extends BaseFragment{
                         // TODO Auto-generated method stub
                         if(event.getAction()==MotionEvent.ACTION_DOWN){
                             PrefUtils.setPrefBoolean(getActivity(), "isFirst", false);
-                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
                             startActivity(intent);
                             getActivity().finish();
                         }

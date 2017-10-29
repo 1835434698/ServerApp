@@ -29,22 +29,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Constant.context = this;
         setContentView(R.layout.activity_main);
         hideTitle();
         init();
-
-//        checkPermission(new CheckPermListener() {
-//            @Override
-//            public void superPermission() {
-////                login();
-//            }
-//        }, R.string.ask_again, Manifest.permission.READ_PHONE_STATE,Manifest.permission.WRITE_EXTERNAL_STORAGE);
-//
-//        final Map<String, String> httpParams =  new HashMap<>();
-//        httpParams.put("userName","1234567890");
-//        httpParams.put("userPassword","123456");//
-//        OkHttpManager.asyncRequest("test0.php", httpParams,listener,true);
     }
 
     private void init() {

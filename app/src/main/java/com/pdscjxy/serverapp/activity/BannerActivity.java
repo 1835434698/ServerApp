@@ -26,7 +26,8 @@ public class BannerActivity extends BaseActivity{
         // TODO Auto-generated method stub
         super.onCreate(bundle);
         if(!PrefUtils.getPrefBoolean(BannerActivity.this, "isFirst", true)) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
+//            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         }
