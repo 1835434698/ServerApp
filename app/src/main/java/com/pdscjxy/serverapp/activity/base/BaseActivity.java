@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.AnimRes;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -23,12 +24,14 @@ import com.pdscjxy.serverapp.permission.EasyPermissions;
 import com.pdscjxy.serverapp.util.Logger;
 import com.pdscjxy.serverapp.view.ProgressDialog;
 
+import java.util.List;
+
 
 /**
  * Created by Administrator on 2017/10/26.
  */
 
-public class BaseActivity extends AppCompatActivity implements IActivity{
+public class BaseActivity extends AppCompatActivity implements IActivity, EasyPermissions.PermissionCallbacks{
     private static final String TAG = "UIBaseActivity";
     public String BACK_BTN_TEXT = "backBtnText";
 
@@ -302,6 +305,41 @@ public class BaseActivity extends AppCompatActivity implements IActivity{
         }
     }
 
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        //同意了某些权限可能不是全部
+    }
+
+    @Override
+    public void onPermissionsAllGranted() {
+        if (mListener != null)
+            mListener.superPermission();//同意了全部权限的回调
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+
+        EasyPermissions.checkDeniedPermissionsNeverAskAgain(this,
+                getString(R.string.perm_tip),
+                R.string.setting, R.string.cancel, null, perms);
+    }
+    /**
+     * 用户权限处理,
+     * 如果全部获取, 则直接过.
+     * 如果权限缺失, 则提示Dialog.
+     *
+     * @param requestCode  请求码
+     * @param permissions  权限
+     * @param grantResults 结果
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+
 
     /**
      * 进入过场动画，在startActivity[ForResult]之后调用才有效
@@ -418,6 +456,8 @@ public class BaseActivity extends AppCompatActivity implements IActivity{
                     return true;
                 }
             }
+        }else if (requestCode == EasyPermissions.SETTINGS_REQ_CODE) {
+            //设置返回
         }
         return false;
     }
