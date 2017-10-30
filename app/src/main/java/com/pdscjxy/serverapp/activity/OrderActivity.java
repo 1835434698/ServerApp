@@ -167,8 +167,10 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
             case R.id.iv_show_1:
                 if (gv_one.getVisibility() == View.VISIBLE){
                     gv_one.setVisibility(View.GONE);
+                    tv_show_1.setText("展开");
                     iv_show_1.setImageDrawable(getDrawable(R.mipmap.ico_down));
                 }else {
+                    tv_show_1.setText("收起");
                     gv_one.setVisibility(View.VISIBLE);
                     iv_show_1.setImageDrawable(getDrawable(R.mipmap.ico_up));
                 }
@@ -178,9 +180,11 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
             case R.id.iv_show_2:
                 if (gv_two.getVisibility() == View.VISIBLE){
                     gv_two.setVisibility(View.GONE);
+                    tv_show_2.setText("展开");
                     iv_show_2.setImageDrawable(getDrawable(R.mipmap.ico_down));
                 }else {
                     gv_two.setVisibility(View.VISIBLE);
+                    tv_show_2.setText("收起");
                     iv_show_2.setImageDrawable(getDrawable(R.mipmap.ico_up));
                 }
 

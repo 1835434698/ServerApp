@@ -58,6 +58,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         if (!TextUtils.isEmpty(mobile)){
             et_phone_number.setText(mobile);
             et_phone_number.setEnabled(false);
+            iv_regist_mobile_delete.setVisibility(View.INVISIBLE);
 
             tv_send_code.setEnabled(false);
             myCount.start();

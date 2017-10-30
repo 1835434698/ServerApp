@@ -114,9 +114,11 @@ public class OrderTwoActivity extends BaseActivity implements View.OnClickListen
             case R.id.iv_show:
                 if (gv_one.getVisibility() == View.VISIBLE){
                     gv_one.setVisibility(View.GONE);
+                    tv_show.setText("展开");
                     iv_show.setImageDrawable(getDrawable(R.mipmap.ico_down));
                 }else {
                     gv_one.setVisibility(View.VISIBLE);
+                    tv_show.setText("收起");
                     iv_show.setImageDrawable(getDrawable(R.mipmap.ico_up));
                 }
 
